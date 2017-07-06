@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/libraries/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+StudentData.iml
+api_service/api_service.iml
+api_service/src/main/resources/
+api_service/target/
+corelogic/core-logic.iml
+corelogic/src/main/java/hsenid/com/service/
+corelogic/src/main/resources/
+corelogic/target/
