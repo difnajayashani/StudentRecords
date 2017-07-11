@@ -1,6 +1,16 @@
 package hsenid.com.repository;
 
+import com.google.common.base.Strings;
+import com.mongodb.WriteResult;
 import hsenid.com.domain.StudentData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +18,7 @@ import java.util.List;
 /**
  * Created by hsenid on 7/4/17.
  */
+@Service
 public class StudentDataRepositoryImpl {
     
     @Autowired
@@ -15,16 +26,16 @@ public class StudentDataRepositoryImpl {
 
 
     //add a new StudentData document
-    @Override
+    //@Override
     public boolean addStudent(StudentData student){
-        boolean document=0;
+        boolean document=false;
         mongoTemplate.insert(student, "student");
         document = true;
         return document;
     }
 
     //delete a StudentData document
-    @Override
+    //@Override
     public int deleteStudent(int student_id){
        
         Query query = new Query();
@@ -34,7 +45,7 @@ public class StudentDataRepositoryImpl {
     }
 
     //update a StudentData document data
-    @Override
+    //@Override
     public int updateStudent(StudentData student){
         Query query = new Query();
         query.addCriteria(Criteria.where(" student_id").is(student.getStudent_id()));
@@ -57,7 +68,7 @@ public class StudentDataRepositoryImpl {
     }
 
     //retrieve details of a given student
-    @Override
+   // @Override
     public  StudentData retrieveStudentDetail(int student_id){
 
         //retrieve the corresponding StudentData document
@@ -66,7 +77,7 @@ public class StudentDataRepositoryImpl {
     }
 
     //retrieve all Student details
-    @Override
+    //@Override
     public List<StudentData> retrieveAllDetails(){
         List<StudentData> studentList=new ArrayList<StudentData>();
         studentList = mongoTemplate.findAll(StudentData.class, "student");
