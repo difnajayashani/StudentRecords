@@ -1,0 +1,41 @@
+{
+	"_id" : ObjectId("595a395d1a35411adbfb4c2d"),
+	"name" : "Difna",
+	"age" : "25",
+	"A" : 17,
+	"B" : 19,
+	"student_id" : 1
+}
+{
+	"_id" : ObjectId("595a39991a35411adbfb4c2e"),
+	"name" : "Maheshi",
+	"age" : "25",
+	"A" : 18,
+	"B" : 18,
+	"student_id" : 2
+}
+{
+	"_id" : ObjectId("595a39af1a35411adbfb4c2f"),
+	"name" : "Dineesha",
+	"age" : "24",
+	"A" : 18,
+	"B" : 20,
+	"student_id" : 3
+}
+{
+	"_id" : ObjectId("595a39cf1a35411adbfb4c30"),
+	"name" : "Menuka",
+	"age" : "25",
+	"A" : 17,
+	"B" : 15,
+	"student_id" : 4
+}
+{
+	"_id" : ObjectId("595a39e41a35411adbfb4c31"),
+	"name" : "Kasun",
+	"age" : "26",
+	"A" : 17,
+	"B" : 20,
+	"student_id" : 5
+}
+
