@@ -29,7 +29,7 @@ public class StudentDataController {
 
 //    @RequestMapping(value = "/viewAll", method = RequestMethod.GET, produces = {"application/json"})
     @GetMapping("/viewAll")
-    public ResponseEntity<List<StudentData>> listAllUsers() {
+    public ResponseEntity<Object> listAllUsers() {
         List<StudentData> students = studentRepository.retrieveAllDetails();
 
         SuccessMessage successMessage = new SuccessMessage();
@@ -50,10 +50,10 @@ public class StudentDataController {
 
                 successMessage.addData(jsonObject);
             }
-            return new ResponseEntity<List<StudentData>>((List<StudentData>) successMessage, HttpStatus.OK);
+            return new ResponseEntity<>( successMessage, HttpStatus.OK);
 
         }
-        return new ResponseEntity<List<StudentData>>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
@@ -115,7 +115,7 @@ public class StudentDataController {
         
     //-------------------Delete A Student--------------------------------------------------------
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {"application/json"})
-    public ResponseEntity<StudentData> deleteStudent(@PathVariable("id") int studentId) {
+    public ResponseEntity<Object> deleteStudent(@PathVariable("id") int studentId) {
 
         int affectedRows = studentRepository.deleteStudent(studentId);
         SuccessMessage successMessage = new SuccessMessage();
@@ -128,14 +128,14 @@ public class StudentDataController {
             successMessage.addData(jsonObject);
         } else {
             successMessage.setMessage("no matching records found to delete.");
-            return new ResponseEntity<StudentData>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<StudentData>((MultiValueMap<String, String>) successMessage, HttpStatus.OK);
+        return new ResponseEntity<>(successMessage, HttpStatus.OK);
     }
         
   //------------------Update A Student--------------------------------------------------------
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT, produces = {"application/json"}, consumes = {"application/json"})
-    public ResponseEntity<StudentData> updateStudent(@RequestBody StudentData student) {
+    public ResponseEntity<Object> updateStudent(@RequestBody StudentData student) {
 
         int affecteRows = studentRepository.updateStudent(student);
         SuccessMessage successMessage = new SuccessMessage();
@@ -146,11 +146,11 @@ public class StudentDataController {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("Student id", student.getStudent_id());
             successMessage.addData(jsonObject);
-            return new ResponseEntity<StudentData>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             successMessage.setMessage("no matching records found to update.");
         }
-        return new ResponseEntity<StudentData>((MultiValueMap<String, String>) successMessage, HttpStatus.OK);
+        return new ResponseEntity<>(successMessage, HttpStatus.OK);
 }
 
 
