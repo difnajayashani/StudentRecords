@@ -23,11 +23,12 @@ public class StudentDataController {
 
 
     @Autowired
-    StudentDataRepositoryImpl studentRepository;
+    private  StudentDataRepositoryImpl studentRepository;
 
     //-------------------Retrieve All Users--------------------------------------------------------
 
-    @RequestMapping(value = "/viewAll/", method = RequestMethod.GET, produces = {"application/json"})
+//    @RequestMapping(value = "/viewAll", method = RequestMethod.GET, produces = {"application/json"})
+    @GetMapping("/viewAll")
     public ResponseEntity<List<StudentData>> listAllUsers() {
         List<StudentData> students = studentRepository.retrieveAllDetails();
 
@@ -88,8 +89,9 @@ public class StudentDataController {
 
     //-------------------Create a Student--------------------------------------------------------
 
-   @RequestMapping(value = "/insert/", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
-    public ResponseEntity<Void> insertStudent( @RequestBody StudentData student) {
+  // @RequestMapping(value = "/insert/", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
+    @PostMapping("/insert")
+    public ResponseEntity<Object> insertStudent( @RequestBody StudentData student) {
         System.out.println("Creating User " + student.getName());
         
          boolean status = studentRepository.addStudent(student);
@@ -107,7 +109,7 @@ public class StudentDataController {
             jsonObject.put("marksSubjectB", student.getMarksSubjectB());
             successMessage.addData(jsonObject);
           }
-            return new ResponseEntity<Void>((MultiValueMap<String, String>) successMessage, HttpStatus.CREATED);
+            return new ResponseEntity<>(successMessage, HttpStatus.CREATED);
     }
         
         

@@ -1,6 +1,6 @@
 package hsenid.com.repository;
 
-import com.google.common.base.Strings;
+import org.assertj.core.util.Strings;
 import com.mongodb.WriteResult;
 import hsenid.com.domain.StudentData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class StudentDataRepositoryImpl {
     //@Override
     public boolean addStudent(StudentData student){
         boolean document=false;
-        mongoTemplate.insert(student, "student");
+        mongoTemplate.insert(student, "classdata");
         document = true;
         return document;
     }
@@ -40,7 +40,7 @@ public class StudentDataRepositoryImpl {
        
         Query query = new Query();
         query.addCriteria(Criteria.where("student_id").is(student_id));
-        WriteResult writeResult = mongoTemplate.remove(query, StudentData.class, "student");
+        WriteResult writeResult = mongoTemplate.remove(query, StudentData.class, "classdata");
         return writeResult.getN();
     }
 
@@ -62,7 +62,7 @@ public class StudentDataRepositoryImpl {
         if (student.getMarksSubjectB() != 0) {
             update.set("marksSubjectB", student.getMarksSubjectB());
         }
-        WriteResult writeResult = mongoTemplate.updateMulti(query, update, StudentData.class, "student");
+        WriteResult writeResult = mongoTemplate.updateMulti(query, update, StudentData.class, "classdata");
         return writeResult.getN();
        
     }
@@ -80,7 +80,7 @@ public class StudentDataRepositoryImpl {
     //@Override
     public List<StudentData> retrieveAllDetails(){
         List<StudentData> studentList=new ArrayList<StudentData>();
-        studentList = mongoTemplate.findAll(StudentData.class, "student");
+        studentList = mongoTemplate.findAll(StudentData.class, "classdata");
         return studentList;
     }
 
